@@ -1,6 +1,6 @@
-test
+E-Consulat
 ==============
-
+Simple Experimental project for consular paperworks
 Template for a simple Vaadin application that only requires a Servlet 3.0 container to run.
 
 
