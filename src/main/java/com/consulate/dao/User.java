@@ -32,6 +32,9 @@ public class User implements java.io.Serializable {
 	private String username;
 	private String password;
 	private int createdDate;
+	private Boolean enabled;
+	private int lastConnectedTime;
+	private Boolean connected;
 	private Set<Attestation> attestations = new HashSet<Attestation>(0);
 	private Set<Role> roles = new HashSet<Role>(0);
 
@@ -85,7 +88,7 @@ public class User implements java.io.Serializable {
 		this.username = username;
 	}
 
-	@Column(name = "password", nullable = false, length = 45)
+	@Column(name = "password", nullable = false, length = 128)
 	public String getPassword() {
 		return this.password;
 	}
@@ -101,6 +104,33 @@ public class User implements java.io.Serializable {
 
 	public void setCreatedDate(int createdDate) {
 		this.createdDate = createdDate;
+	}
+
+	@Column(name = "enabled", length = 45)
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	@Column(name = "last_connected_time")
+	public int getLastConnectedTime() {
+		return lastConnectedTime;
+	}
+
+	public void setLastConnectedTime(int lastConnectedTime) {
+		this.lastConnectedTime = lastConnectedTime;
+	}
+
+	@Column(name = "connected")
+	public Boolean getConnected() {
+		return connected;
+	}
+
+	public void setConnected(Boolean connected) {
+		this.connected = connected;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
@@ -122,6 +152,21 @@ public class User implements java.io.Serializable {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+	public static void main(String[] args) {
+		
+		User user=new User();
+		user.setUsername("moh");
+		user.setPassword("12345667889");
+		user.setEnabled(true);
+		
+		user.setConnected(true);
+		user.setCreatedDate(12345678);
+		user.setLastConnectedTime(132467889);
+		DaoService daoService=new Dao();
+		Consulate consulate=(Consulate)(daoService.get(Consulate.class, 3));
+		user.setConsulate(consulate);
+		daoService.save(user);
 	}
 
 }
