@@ -38,7 +38,7 @@ public class UserService implements IUserService {
 
 	public static void main(String[] args) {
 		IUserService service = new UserService();
-		System.out.println(service.cryptPassword("Amine"));
+		System.out.println(service.cryptPassword("moh"));
 	}
 
 }

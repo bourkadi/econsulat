@@ -3,6 +3,7 @@ package com.consulate.ui;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.consulate.ui.login.CurrentUser;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.server.ExternalResource;
@@ -52,7 +53,9 @@ public class Menu extends CssLayout {
 		top.setDefaultComponentAlignment(Alignment.MIDDLE_LEFT);
 		top.addStyleName(ValoTheme.MENU_TITLE);
 		top.setSpacing(true);
-		Label title = new Label("Bienvenue");
+		String welcome= "Bienvenue "+CurrentUser.get();
+		Label title = new Label(welcome);
+		
 		title.addStyleName(ValoTheme.LABEL_H3);
 		title.setSizeUndefined();
 		title.setDescription("<h2><img src=\"VAADIN/themes/runo/icons/32/note.png\"/>A richtext tooltip</h2>"

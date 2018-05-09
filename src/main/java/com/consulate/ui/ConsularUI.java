@@ -29,7 +29,7 @@ public class ConsularUI extends UI {
 	protected void init(VaadinRequest request) {
 		Responsive.makeResponsive(this);
 		setLocale(request.getLocale());
-		getPage().setTitle("Cabinet");
+		getPage().setTitle("Systeme de gestion consulaire");
 		if (!accessControl.isUserSignedIn()) {
 			setContent(new LoginScreen(accessControl, new LoginListener() {
 				@Override

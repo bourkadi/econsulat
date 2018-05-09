@@ -1,6 +1,7 @@
 package com.consulate.ui.login;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import com.consulate.dao.Dao;
@@ -67,17 +68,33 @@ public class BasicAccessControl implements AccessControl, Serializable {
 
 	public Boolean checkUser(String username, String password) {
 		User user = null;
+		user = (User) dao.getByProperty(User.class, "username", username).get(0);
+
 		if (username == null || username.isEmpty()) {
 			return false;
 		}
-		try {
-			user = (User) dao.getByProperty(User.class, "username", username).get(0);
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.err.println(e.getMessage());
+/*	Optional 
+ * 	if (user.getConnected()) {
+			return false;
+		}*/
+	
+			try {
+
+				user.setConnected(true);
+				Date d = new Date();
+				int t = (int) (d.getTime() / 1000);
+				user.setLastConnectedTime(t);
+				dao.save(user);
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.err.println(e.getMessage());
+				return false;
+			}
+		
+		if (!user.getEnabled()) {
 			return false;
 		}
-		if (!user.getEnabled()) {
+		if (isUserSignedIn()) {
 			return false;
 		}
 		// if (BCrypt.checkpw(password, user.getPassword())) {
@@ -91,6 +108,7 @@ public class BasicAccessControl implements AccessControl, Serializable {
 		else {
 			return false;
 		}
+
 	}
 
 	public String cryptPassword(String p) {
@@ -114,6 +132,6 @@ public class BasicAccessControl implements AccessControl, Serializable {
 
 	public static void main(String[] args) {
 		BasicAccessControl accessControl = new BasicAccessControl();
-		System.out.println(accessControl.checkUser("amine", "Amine"));
+		System.out.println(accessControl.checkUser("moh", "moh"));
 	}
 }

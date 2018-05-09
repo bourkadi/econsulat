@@ -45,13 +45,13 @@ public class SideMenu extends CssLayout {
 		top.setDefaultComponentAlignment(Alignment.MIDDLE_LEFT);
 		top.addStyleName(ValoTheme.MENU_TITLE);
 		top.setSpacing(true);
-		Label title = new Label("My CRUD");
-		title.addStyleName(ValoTheme.LABEL_H3);
+		//Label title = new Label("My CRUD");
+		/*title.addStyleName(ValoTheme.LABEL_H3);
 		title.setSizeUndefined();
 		Image image = new Image(null, new ThemeResource("img/table-logo.png"));
 		image.setStyleName("logo");
 		top.addComponent(image);
-		top.addComponent(title);
+		top.addComponent(title);*/
 		menuPart.addComponent(top);
 
 		// logout menu item
