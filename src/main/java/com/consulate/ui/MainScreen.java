@@ -1,5 +1,6 @@
 package com.consulate.ui;
 
+import com.consulate.ui.civilStatus.CivilStatus;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.FontAwesome;
